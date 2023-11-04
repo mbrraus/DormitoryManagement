@@ -16,4 +16,8 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0-rc.1.23421.29"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Data\Models\TestRoom.cs" />
+    </ItemGroup>
+
 </Project>

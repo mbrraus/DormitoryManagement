@@ -2,34 +2,15 @@
 @attribute [StreamRendering(true)]
 @using Microsoft.EntityFrameworkCore
 @using DormitoryManagement.Data
-@using DormitoryManagement.Data.Models
 @inject IDbContextFactory<DormitoryContext> DbFactory
 
-<h2>Displaying room descriptions:</h2>
-@if (_testRooms is null)
-{
-    <p>Loading..</p>
-}
-else if (!_testRooms.Any())
-{
-    <p>Nothing to display..</p>
-}
-else
-{
-    @foreach (var room in _testRooms)
-    {
-        <p>@room.Description</p>
-    }
-}
+
 
 @code {
-
-    private List<TestRoom>? _testRooms;
-
+    
     protected override async Task OnInitializedAsync()
     {
         await using var context = await DbFactory.CreateDbContextAsync();
-        _testRooms = await context.TestRooms.ToListAsync();
     }
 
 }
