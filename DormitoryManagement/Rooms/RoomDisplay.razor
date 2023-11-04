@@ -1,0 +1,41 @@
+@page "/room-display"
+@using DormitoryManagement.Data.Models
+@attribute [StreamRendering(true)]
+@inject RoomService RoomService
+
+
+<section class="max-w-screen-md mx-auto">
+    @if (_isServerLoading)
+    {
+        <p>Loading..</p>
+    }
+    else
+    {
+        <div class="flex justify-center gap-6">
+            @foreach (var building in _buildings)
+            {
+                <div class="shadow-sm bg-gray-500 hover:cursor-pointer hover:bg-gray-600 text-white rounded-2xl w-48 h-48 flex justify-center items-center">
+                    @building.Name
+                </div>
+            }
+
+        </div>
+    }
+
+</section>
+
+
+@code {
+
+    private List<Building> _buildings = new();
+    private bool _isServerLoading;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isServerLoading = true;
+        _buildings = await RoomService.GetBuildings();
+        _isServerLoading = false;
+    }
+
+}
+
