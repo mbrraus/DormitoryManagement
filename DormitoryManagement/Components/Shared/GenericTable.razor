@@ -1,0 +1,50 @@
+@typeparam TItem
+
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+            <th scope="col" class="px-6 py-3">
+                Nr.
+            </th>
+            
+            @foreach (var header in Headers)
+            {
+                <th scope="col" class="px-6 py-3">
+                    @header
+                </th>
+            }
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Items)
+        {
+            <tr class="bg-white border-b">
+                <td class="px-6 py-4">
+                    @(Items.IndexOf(item) + 1)
+                </td>
+                
+                @foreach (var field in Fields)
+                {
+                    <td class="px-6 py-4">
+                        @field(item)
+                    </td>
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required List<TItem> Items { get; set; }
+
+    [Parameter, EditorRequired]
+    public required List<string> Headers { get; set; }
+
+    [Parameter, EditorRequired]
+    public required List<Func<TItem, object>> Fields { get; set; }
+
+}

@@ -1,6 +1,7 @@
 using DormitoryManagement.Client.Pages;
 using DormitoryManagement.Components;
 using DormitoryManagement.Data;
+using DormitoryManagement.Inventory;
 using DormitoryManagement.Rooms;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ builder.Services.AddDbContextFactory<DormitoryContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<RoomService>();
+builder.Services.AddScoped<InventoryService>();
 
 var app = builder.Build();
 

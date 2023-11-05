@@ -1,8 +1,12 @@
 ﻿@using DormitoryManagement.Assets
-<div class="relative w-56">
-    <div class="absolute inset-y-0 left-0 w-56 shadow-md bg-neutral-50 space-y-7 p-4">
-        @ReusableAssets.BrandLogo("w-full h-auto mx-auto")
 
+<aside class="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-neutral-50">
+    <a href="#">
+        @ReusableAssets.BrandLogo("w-full h-auto mx-auto")
+    </a>
+
+    <div class="flex flex-col mt-6">
+        <NavLink ActiveClass="bg-gray-100" class="flex items-center p-2 rounded-lg hover:bg-gray-100" href="inventory-list">Inventory</NavLink>
         <NavLink ActiveClass="bg-gray-100" class="flex items-center p-2 rounded-lg hover:bg-gray-100" href="room-display">Rooms</NavLink>
     </div>
-</div>
+</aside>

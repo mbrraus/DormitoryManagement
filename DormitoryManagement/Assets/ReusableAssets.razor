@@ -1,6 +1,6 @@
 @code {
 
-    public static RenderFragment<string> BrandLogo = classes =>
+    public static readonly RenderFragment<string> BrandLogo = classes =>
         @<svg class="@classes" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 277">
             <g transform="matrix(1,0,0,1,-1.2121212121212466,0.6992347832074586)">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 396 55" data-background-color="#f0cf90" preserveAspectRatio="xMidYMid meet" height="277" width="2000">
@@ -33,7 +33,12 @@
                     </g>
                 </svg>
             </g>
-        </svg>
-        ;
+        </svg>;
+
+    public static readonly RenderFragment<string> InputLabel = label =>
+        @<label class="block mb-2 text-sm font-medium text-gray-900">@label</label>;
+    
+    public static readonly RenderFragment<string> PageTitle = text =>
+        @<h1 class="text-4xl font-bold">@text</h1>;
 
 }

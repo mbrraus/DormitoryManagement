@@ -1,0 +1,36 @@
+@page "/inventory-list"
+@using DormitoryManagement.Data.Models
+@inject InventoryService InventoryService
+@inject NavigationManager Navi
+
+
+<div class="max-w-screen-sm mx-auto">
+    @if (_isServerLoading)
+    {
+        <p>Loading..</p>
+    }
+    else
+    {
+        <div class="flex justify-between mb-10">
+            @ReusableAssets.PageTitle("Inventory Items")
+            <a class="base-button" href="/create-item">Add</a>
+        </div>
+        <GenericTable Items="_inventoryItems"
+                      Headers="@(new List<string> { "Name" })"
+                      Fields="@(new List<Func<InventoryItem, object>> { p => p.Name })"/>
+    }
+</div>
+
+@code {
+
+    private List<InventoryItem> _inventoryItems = null!;
+    private bool _isServerLoading;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isServerLoading = true;
+        _inventoryItems = await InventoryService.GetAllItems();
+        _isServerLoading = false;
+    }
+
+}

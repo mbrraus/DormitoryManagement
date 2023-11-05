@@ -6,4 +6,5 @@ public class Room
     public required string Number { get; set; }
     public required Guid FloorId { get; set; }
     public Floor Floor { get; set; } = null!;
+    public ICollection<RoomInventory> RoomInventories { get; set; } = null!;
 }

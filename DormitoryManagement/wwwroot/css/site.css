@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .input-field {
+        @apply mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+    }
+    .large-button{
+        @apply px-5 py-3 text-base font-medium text-center text-white bg-[#12b787] hover:bg-[#06956e] rounded-lg focus:ring-4 focus:outline-none focus:ring-[#d1fae7]
+    }
+    .base-button{
+        @apply px-5 py-2.5 text-sm font-medium text-white bg-[#12b787] hover:bg-[#06956e] focus:ring-4 focus:outline-none focus:ring-[#d1fae7] rounded-lg text-center
+    }
+}
