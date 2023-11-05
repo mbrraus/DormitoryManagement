@@ -3,6 +3,7 @@ using System;
 using DormitoryManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,13 +12,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DormitoryManagement.Migrations
 {
     [DbContext(typeof(DormitoryContext))]
-    partial class DormitoryContextModelSnapshot : ModelSnapshot
+    [Migration("20231026204126_AddingRoomSetup")]
+    partial class AddingRoomSetup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0-rc.2.23480.1")
+                .HasAnnotation("ProductVersion", "8.0.0-rc.1.23419.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -39,12 +42,12 @@ namespace DormitoryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9365f827-8055-41f0-8e7e-a32891b46d2e"),
+                            Id = new Guid("58c02d2e-8483-45fc-b0c3-5689642790bd"),
                             Name = "Building A"
                         },
                         new
                         {
-                            Id = new Guid("32a28f1c-7d20-47e4-997d-f4c3bb974e23"),
+                            Id = new Guid("e3ab161e-9020-433a-8cc9-096a42e16702"),
                             Name = "Building B"
                         });
                 });
@@ -70,26 +73,26 @@ namespace DormitoryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1867af08-63c7-4517-bfbe-0c99c67318cf"),
-                            BuildingId = new Guid("9365f827-8055-41f0-8e7e-a32891b46d2e"),
+                            Id = new Guid("7c20b0b1-019d-4727-8483-130e5a802882"),
+                            BuildingId = new Guid("58c02d2e-8483-45fc-b0c3-5689642790bd"),
                             Number = 1
                         },
                         new
                         {
-                            Id = new Guid("70b54e27-bde1-468c-930a-f638c25f22df"),
-                            BuildingId = new Guid("9365f827-8055-41f0-8e7e-a32891b46d2e"),
+                            Id = new Guid("2e3b8264-4ac0-4ea1-bc58-dc3437db31d5"),
+                            BuildingId = new Guid("58c02d2e-8483-45fc-b0c3-5689642790bd"),
                             Number = 2
                         },
                         new
                         {
-                            Id = new Guid("75234197-e4a8-407e-85e8-80279350db7f"),
-                            BuildingId = new Guid("32a28f1c-7d20-47e4-997d-f4c3bb974e23"),
+                            Id = new Guid("0801c872-16b3-4202-9f32-36c287fce094"),
+                            BuildingId = new Guid("e3ab161e-9020-433a-8cc9-096a42e16702"),
                             Number = 1
                         },
                         new
                         {
-                            Id = new Guid("981a6210-5098-4cc1-9917-c42f777cfe9a"),
-                            BuildingId = new Guid("32a28f1c-7d20-47e4-997d-f4c3bb974e23"),
+                            Id = new Guid("ce898d7d-c8d8-4aed-a604-8e49b022f766"),
+                            BuildingId = new Guid("e3ab161e-9020-433a-8cc9-096a42e16702"),
                             Number = 2
                         });
                 });
@@ -116,86 +119,86 @@ namespace DormitoryManagement.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f0be2115-a305-4d1c-87ce-a35f547b68aa"),
-                            FloorId = new Guid("1867af08-63c7-4517-bfbe-0c99c67318cf"),
+                            Id = new Guid("39efbe04-0b4b-4c2a-a6a5-81aeb4d5da86"),
+                            FloorId = new Guid("7c20b0b1-019d-4727-8483-130e5a802882"),
                             Number = "101"
                         },
                         new
                         {
-                            Id = new Guid("427c1c4a-5313-427a-97dc-110c965b0eab"),
-                            FloorId = new Guid("1867af08-63c7-4517-bfbe-0c99c67318cf"),
+                            Id = new Guid("4a2abfd8-e20d-4da6-84b0-8234f6fcae85"),
+                            FloorId = new Guid("7c20b0b1-019d-4727-8483-130e5a802882"),
                             Number = "102"
                         },
                         new
                         {
-                            Id = new Guid("3093a6d7-ddae-456c-9809-8acdbb405d7a"),
-                            FloorId = new Guid("1867af08-63c7-4517-bfbe-0c99c67318cf"),
+                            Id = new Guid("20f2b16f-078d-43a0-8000-7b1ac89708c5"),
+                            FloorId = new Guid("7c20b0b1-019d-4727-8483-130e5a802882"),
                             Number = "103"
                         },
                         new
                         {
-                            Id = new Guid("bb042b20-533f-44d2-b070-7aa05fc3ddb5"),
-                            FloorId = new Guid("70b54e27-bde1-468c-930a-f638c25f22df"),
+                            Id = new Guid("edf8f8cb-4ef3-4ed6-8bc1-4831dcca975c"),
+                            FloorId = new Guid("2e3b8264-4ac0-4ea1-bc58-dc3437db31d5"),
                             Number = "201"
                         },
                         new
                         {
-                            Id = new Guid("8dea9c3a-672a-462a-bcc7-96fa2df682c0"),
-                            FloorId = new Guid("70b54e27-bde1-468c-930a-f638c25f22df"),
+                            Id = new Guid("b6d1c8d8-08ea-4c3e-96a0-6835c828966f"),
+                            FloorId = new Guid("2e3b8264-4ac0-4ea1-bc58-dc3437db31d5"),
                             Number = "202"
                         },
                         new
                         {
-                            Id = new Guid("40601319-87b8-4100-8814-d61466ea0985"),
-                            FloorId = new Guid("70b54e27-bde1-468c-930a-f638c25f22df"),
+                            Id = new Guid("23b34d21-ecb5-4408-8d57-a567d8e0fec2"),
+                            FloorId = new Guid("2e3b8264-4ac0-4ea1-bc58-dc3437db31d5"),
                             Number = "203"
                         },
                         new
                         {
-                            Id = new Guid("c2c0560e-62f1-436e-8886-453d7bc4a359"),
-                            FloorId = new Guid("70b54e27-bde1-468c-930a-f638c25f22df"),
+                            Id = new Guid("7e1e65c5-011c-47d1-8aa6-9eb7813abe9f"),
+                            FloorId = new Guid("2e3b8264-4ac0-4ea1-bc58-dc3437db31d5"),
                             Number = "204"
                         },
                         new
                         {
-                            Id = new Guid("b8652abf-a18c-4105-be6e-8c249c68181e"),
-                            FloorId = new Guid("75234197-e4a8-407e-85e8-80279350db7f"),
+                            Id = new Guid("b92c968f-e11a-4888-9f61-2a1668bc3642"),
+                            FloorId = new Guid("0801c872-16b3-4202-9f32-36c287fce094"),
                             Number = "301"
                         },
                         new
                         {
-                            Id = new Guid("aae92210-397b-4185-80c9-234e36d77089"),
-                            FloorId = new Guid("75234197-e4a8-407e-85e8-80279350db7f"),
+                            Id = new Guid("1a81f689-92d3-4813-bbce-645e9b360377"),
+                            FloorId = new Guid("0801c872-16b3-4202-9f32-36c287fce094"),
                             Number = "302"
                         },
                         new
                         {
-                            Id = new Guid("c96dcd55-d7b2-4a56-90dc-11dc3c334a0e"),
-                            FloorId = new Guid("75234197-e4a8-407e-85e8-80279350db7f"),
+                            Id = new Guid("24788378-6e5e-40a0-8a22-c901d4052a89"),
+                            FloorId = new Guid("0801c872-16b3-4202-9f32-36c287fce094"),
                             Number = "303"
                         },
                         new
                         {
-                            Id = new Guid("11de0c6b-312e-4998-beb8-3ef73008902a"),
-                            FloorId = new Guid("75234197-e4a8-407e-85e8-80279350db7f"),
+                            Id = new Guid("cb97ba0d-03a9-413f-8197-8154e7cf603c"),
+                            FloorId = new Guid("0801c872-16b3-4202-9f32-36c287fce094"),
                             Number = "304"
                         },
                         new
                         {
-                            Id = new Guid("bb067df4-3b41-4637-9ce6-062e1bba9e19"),
-                            FloorId = new Guid("981a6210-5098-4cc1-9917-c42f777cfe9a"),
+                            Id = new Guid("99d3beec-1ff4-47bd-8a9a-ac20c48f6b78"),
+                            FloorId = new Guid("ce898d7d-c8d8-4aed-a604-8e49b022f766"),
                             Number = "401"
                         },
                         new
                         {
-                            Id = new Guid("f6484657-34de-44c2-804b-737bfa0f67e2"),
-                            FloorId = new Guid("981a6210-5098-4cc1-9917-c42f777cfe9a"),
+                            Id = new Guid("749410a0-c185-4df3-8469-ef28e8552feb"),
+                            FloorId = new Guid("ce898d7d-c8d8-4aed-a604-8e49b022f766"),
                             Number = "402"
                         },
                         new
                         {
-                            Id = new Guid("f08da799-7452-412f-b8e4-9aef82ce8444"),
-                            FloorId = new Guid("981a6210-5098-4cc1-9917-c42f777cfe9a"),
+                            Id = new Guid("54266368-6b58-4a54-88b0-1fc368974d2f"),
+                            FloorId = new Guid("ce898d7d-c8d8-4aed-a604-8e49b022f766"),
                             Number = "403"
                         });
                 });
