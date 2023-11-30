@@ -14,27 +14,46 @@
         <div class="flex justify-center gap-6">
             @foreach (var building in _buildings)
             {
-                <div class="shadow-sm bg-gray-500 hover:cursor-pointer hover:bg-gray-600 text-white rounded-2xl w-48 h-48 flex justify-center items-center">
-                    @building.Name
+                <div class="w-60 h-auto text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-lg">
+                    <div class="block w-full px-4 py-2 text-white bg-gray-800 border-b border-gray-200 rounded-t-lg cursor-pointer">
+                        @building.Name
+                    </div>
+
+                    @foreach (var floor in building.Floors)
+                    {
+                        <a href="/floor-rooms/@floor.Id" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 text-gray-800">
+                            Floor @floor.Number
+                        </a>
+                    }
                 </div>
             }
-
         </div>
+        
     }
 
 </section>
+
 
 
 @code {
 
     private List<Building> _buildings = new();
     private bool _isServerLoading;
-
+    
     protected override async Task OnInitializedAsync()
     {
         _isServerLoading = true;
         _buildings = await RoomService.GetBuildings();
+        
+        _buildings = _buildings.OrderBy(b => b.Name).ToList();
+    
+        foreach (var building in _buildings)
+        {
+            building.Floors = building.Floors.OrderBy(f => f.Number).ToList();
+        }
         _isServerLoading = false;
     }
 
+    
+    
 }

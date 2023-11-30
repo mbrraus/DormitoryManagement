@@ -1,0 +1,49 @@
+@page "/floor-rooms/{FloorId}"
+@using DormitoryManagement.Rooms
+@using DormitoryManagement.Data.Models
+@inject RoomService RoomService
+
+@if (isLoading)
+{
+    <p>Loading Rooms...</p>
+}
+else if (rooms != null && rooms.Any())
+{
+    <div>
+        <h1>Rooms on Floor @floorNumber</h1>
+        <ul>
+            @foreach (var room in rooms)
+            {
+                  <li>@room.Number </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <p>No rooms found for this floor.</p>
+}
+
+@code
+{
+    [Parameter]
+    public string FloorId { get; set; }
+
+    private List<Room> rooms;
+    private bool isLoading = true;
+    private int floorNumber;
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Guid.TryParse(FloorId, out var floorId))
+        {
+            rooms = await RoomService.GetRoomsByFloorId(floorId);
+            if (rooms.Any())
+            {
+                floorNumber = rooms.First().Floor.Number;
+            }
+            
+        }
+        isLoading = false;
+    }
+}
