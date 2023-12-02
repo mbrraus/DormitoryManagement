@@ -7,7 +7,12 @@ module.exports = {
         ],
     },
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                'primary': '#023047',
+                'primary-hover' : '#022639'
+            }
+        }
     },
     plugins: [],
 }

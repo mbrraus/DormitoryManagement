@@ -1,0 +1,29 @@
+@using DormitoryManagement.Data.Models
+
+<p class="mb-2 text-xl font-semibold">Floor @Floor.Number</p>
+<div class="w-full border border-gray-300 rounded-lg flex flex-wrap gap-4 p-6">
+    @foreach(var room in Floor.Rooms)
+    {
+        <div class="w-16 h-16 border border-gray-300 flex justify-center items-center">@room.Number</div>
+    }
+    
+    <button @onclick="AddRoom" class="w-16 h-16 border border-gray-300 text-sm">Add room</button>
+</div>
+
+
+@code {
+    [Parameter, EditorRequired] public Floor Floor { get; set; } = null!;
+    
+    [Parameter, EditorRequired] public EventCallback<Guid> OnAddNewRoom { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Floor.Rooms = Floor.Rooms.OrderBy(x => int.Parse(x.Number)).ToList();
+    }
+
+    private async Task AddRoom()
+    {
+        await OnAddNewRoom.InvokeAsync(Floor.Id);
+    }
+
+}

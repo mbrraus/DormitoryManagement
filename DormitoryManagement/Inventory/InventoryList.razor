@@ -1,8 +1,7 @@
-@page "/inventory-list"
+@page "/inventory-display"
+@attribute [StreamRendering]
 @using DormitoryManagement.Data.Models
 @inject InventoryService InventoryService
-@inject NavigationManager Navi
-
 
 <div class="max-w-screen-sm mx-auto">
     @if (_isServerLoading)

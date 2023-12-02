@@ -1,8 +1,8 @@
 using DormitoryManagement.Client.Pages;
 using DormitoryManagement.Components;
 using DormitoryManagement.Data;
+using DormitoryManagement.FloorPlan;
 using DormitoryManagement.Inventory;
-using DormitoryManagement.Rooms;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +16,8 @@ builder.Services.AddDbContextFactory<DormitoryContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<RoomService>();
 builder.Services.AddScoped<InventoryService>();
+builder.Services.AddScoped<FloorPlanService>();
 
 var app = builder.Build();
 
