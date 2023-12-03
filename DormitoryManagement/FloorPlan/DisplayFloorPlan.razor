@@ -3,7 +3,7 @@
 @using DormitoryManagement.Data.Models
 @inject FloorPlanService FloorPlanService
 
-<div class="max-w-screen-sm mx-auto">
+<div class="max-w-screen-md mx-auto">
     @if (_isServerLoading)
     {
         <p>Loading..</p>
@@ -15,10 +15,10 @@
             <button class="base-button" @onclick="AddBuilding">New Building</button>
         </div>
 
-        <section class="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-12">
+        <section class="grid sm:grid-cols-3 md:grid-cols-4 gap-6 mb-12">
             @foreach (var building in _buildings)
             {
-                <div class="w-52 h-auto text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div class="w-full h-auto text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-lg">
                     <div class="flex justify-between px-4 py-2 text-white bg-gray-800 border-b border-gray-200 rounded-t-lg">
                         @building.Name
                     </div>
@@ -30,8 +30,8 @@
                             Floor @floor.Number
                         </button>
                     }
-
-                    <button @onclick="@(() => AddFloor(building.Id))" class="text-primary text-opacity-60 text-left block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100">
+                    
+                    <button @onclick="@(() => AddFloor(building.Id))" class="text-gray-400 text-opacity-60 text-left block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100">
                         Add floor
                     </button>
 
@@ -112,3 +112,4 @@
     }
 
 }
+

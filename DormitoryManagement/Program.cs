@@ -3,6 +3,7 @@ using DormitoryManagement.Components;
 using DormitoryManagement.Data;
 using DormitoryManagement.FloorPlan;
 using DormitoryManagement.Inventory;
+using DormitoryManagement.Rooms;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,7 @@ builder.Services.AddDbContextFactory<DormitoryContext>(options =>
 
 builder.Services.AddScoped<InventoryService>();
 builder.Services.AddScoped<FloorPlanService>();
+builder.Services.AddScoped<RoomService>();
 
 var app = builder.Build();
 

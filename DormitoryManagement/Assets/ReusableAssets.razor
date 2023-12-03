@@ -10,5 +10,8 @@
 
     public static readonly RenderFragment<string> PageTitle = text =>
         @<h1 class="text-4xl font-bold">@text</h1>;
+    
+    public static readonly RenderFragment<(string text, string classes)> SubTitle = param =>
+        @<p class="@($"font-semibold opacity-40 {param.classes}")">@param.text</p>;
 
 }
