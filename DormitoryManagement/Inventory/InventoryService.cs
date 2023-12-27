@@ -19,7 +19,22 @@ public class InventoryService(IDbContextFactory<DormitoryContext> contextFactory
         await context.SaveChangesAsync();
         return true;
     }
-    
+
+    public async Task<bool> DeleteInventory(Guid itemId)
+    {
+        await using var context = await contextFactory.CreateDbContextAsync();
+        var item = await context.InventoryItems
+            .SingleAsync(x => x.Id == itemId);
+       
+        
+        context.InventoryItems.Remove(item);
+        await context.SaveChangesAsync();
+        return true; // Successfully deleted
+        
+
+     
+    }
+
     public async Task<List<InventoryItem>> GetAllItems()
     {
         await using var context = await contextFactory.CreateDbContextAsync();
