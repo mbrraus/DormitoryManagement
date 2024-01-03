@@ -1,0 +1,61 @@
+@page "/rooms/{Id:guid}/student-add"
+@inject RoomService RoomService
+@inject NavigationManager NavigationManager
+
+<form method="post" @onsubmit="Submit" @formname="assign-student-form">
+    <AntiforgeryToken/>
+    <label class="form-control w-full max-w-xs mx-auto mb-6">
+        <div class="label">
+            <span class="label-text">Student first name?</span>
+        </div>
+        <InputText @bind-Value="AddStudentToRoomRequest.FirstName" class="input input-bordered w-full max-w-xs"/>
+    </label>
+
+    <label class="form-control w-full max-w-xs mx-auto mb-6">
+        <div class="label">
+            <span class="label-text">Student last name?</span>
+        </div>
+        <InputText @bind-Value="AddStudentToRoomRequest.LastName" class="input input-bordered w-full max-w-xs"/>
+    </label>
+
+    <label class="form-control w-full max-w-xs mx-auto mb-6">
+        <div class="label">
+            <span class="label-text">Start date?</span>
+        </div>
+        <InputDate @bind-Value="AddStudentToRoomRequest.StartDate" class="input input-bordered w-full max-w-xs"/>
+    </label>
+
+    <label class="form-control w-full max-w-xs mx-auto mb-12">
+        <div class="label">
+            <span class="label-text">End date?</span>
+        </div>
+        <InputDate @bind-Value="AddStudentToRoomRequest.EndDate" class="input input-bordered w-full max-w-xs"/>
+    </label>
+
+
+    <div class="max-w-xs w-full mx-auto">
+        <button type="submit" class="btn btn-primary w-full">Submit</button>
+    </div>
+
+</form>
+
+@code {
+
+    [Parameter] public Guid Id { get; set; }
+
+    [SupplyParameterFromForm] 
+    public AddStudentToRoomRequest AddStudentToRoomRequest { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        AddStudentToRoomRequest.RoomId = Id;
+    }
+
+
+    private async Task Submit()
+    {
+        await RoomService.AssignStudentToRoom(AddStudentToRoomRequest);
+        NavigationManager.NavigateTo($"rooms/{Id}");
+    }
+
+}

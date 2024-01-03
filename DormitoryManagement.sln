@@ -4,8 +4,6 @@ VisualStudioVersion = 16.0.0.0
 MinimumVisualStudioVersion = 16.0.0.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DormitoryManagement", "DormitoryManagement\DormitoryManagement.csproj", "{2C2AC6FE-A2D3-4C3F-9C42-FDC99DF187DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DormitoryManagement.Client", "DormitoryManagement.Client\DormitoryManagement.Client.csproj", "{D4B2DD34-4090-462C-A771-65094826509D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,18 +14,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D4B2DD34-4090-462C-A771-65094826509D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Debug|x64.Build.0 = Debug|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Debug|x86.Build.0 = Debug|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Release|x64.ActiveCfg = Release|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Release|x64.Build.0 = Release|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Release|x86.ActiveCfg = Release|Any CPU
-		{D4B2DD34-4090-462C-A771-65094826509D}.Release|x86.Build.0 = Release|Any CPU
 		{2C2AC6FE-A2D3-4C3F-9C42-FDC99DF187DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C2AC6FE-A2D3-4C3F-9C42-FDC99DF187DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C2AC6FE-A2D3-4C3F-9C42-FDC99DF187DB}.Debug|x64.ActiveCfg = Debug|Any CPU

@@ -1,0 +1,71 @@
+@page "/rooms"
+@using DormitoryManagement.Data.Models
+@inject RoomService RoomService
+@rendermode InteractiveServer
+
+@if (_isLoading)
+{
+    <p>Loading..</p>
+}
+else
+{
+    <div class="overflow-x-auto">
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Building</th>
+                <th>Floor</th>
+                <th>Capacity</th>
+                <th>Students</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var room in GetRooms())
+            {
+                <tr>
+                    <td>@room.Number</td>
+                    <td>@room.Floor.Building.Name</td>
+                    <td>@room.Floor.Number</td>
+                    <td>@room.AllowedPersons</td>
+                    <td>@room.RoomAssignments.Count</td>
+                    <td>
+                        <a href="@($"rooms/{room.Id}")" class="btn btn-ghost">Go</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+
+
+@code {
+
+    [Parameter] public Guid? BuildingId { get; set; }
+    [Parameter] public Guid? FloorId { get; set; }
+
+    private List<Building> _buildings = [];
+    private bool _isLoading;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isLoading = true;
+        _buildings = await RoomService.GetAllBuildings();
+        _isLoading = false;
+    }
+
+    private List<Room> GetRooms()
+    {
+        return _buildings
+            .SelectMany(building => building.Floors, (building, floor) => new { Building = building, Floor = floor })
+            .SelectMany(bf => bf.Floor.Rooms, (bf, room) => new { bf.Building, bf.Floor, Room = room })
+            .OrderBy(bfr => bfr.Building.Name)
+            .ThenBy(bfr => bfr.Floor.Number)
+            .ThenBy(bfr => bfr.Room.Number)
+            .Select(bfr => bfr.Room)
+            .ToList();
+    }
+
+}

@@ -1,7 +1,5 @@
-using DormitoryManagement.Client.Pages;
 using DormitoryManagement.Components;
 using DormitoryManagement.Data;
-using DormitoryManagement.FloorPlan;
 using DormitoryManagement.Inventory;
 using DormitoryManagement.Rooms;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +16,6 @@ builder.Services.AddDbContextFactory<DormitoryContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<InventoryService>();
-builder.Services.AddScoped<FloorPlanService>();
 builder.Services.AddScoped<RoomService>();
 
 var app = builder.Build();
@@ -41,8 +38,6 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(Counter).Assembly);
+    .AddInteractiveServerRenderMode();
 
 app.Run();

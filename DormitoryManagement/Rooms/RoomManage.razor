@@ -1,0 +1,91 @@
+@page "/rooms/{Id:guid}"
+@using DormitoryManagement.Data.Models
+@inject RoomService RoomService
+@rendermode InteractiveServer
+
+@if (_isLoading)
+{
+    <p>Loading..</p>
+}
+else
+{
+    <h1 class="mb-12 font-semibold text-3xl">@Room.Number</h1>
+    <div class="divider divider-start mb-8 font-semibold">Students</div>
+    <div class="overflow-x-auto mb-16">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Student name</th>
+                <th>Start</th>
+                <th>End</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var assignment in Room.RoomAssignments)
+            {
+                <tr>
+                    <td>@assignment.Student.FirstName</td>
+                    <td>@assignment.StartDate</td>
+                    <td>@assignment.EndDate</td>
+                    <td></td>
+                </tr>
+            }
+            @for (int i = 0; i < Room.AllowedPersons - Room.RoomAssignments.Count; i++)
+            {
+                <tr>
+                    <td>Empty</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a href="@($"rooms/{Room.Id}/student-add")" class="btn btn-primary btn-sm">Add</a>
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="divider divider-start mb-8 font-semibold">Inventory</div>
+    <div class="overflow-x-auto mb-16">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Expected</th>
+                <th>Actual</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var inventory in Room.RoomInventories)
+            {
+                <tr>
+                    <th>@inventory.InventoryItem.Name</th>
+                    <td>@inventory.ExpectedQuantity</td>
+                    <td>@inventory.ActualQuantity</td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+
+    [Parameter] public Guid Id { get; set; }
+
+    private Room Room { get; set; } = default!;
+
+    private bool _isLoading;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isLoading = true;
+        Room = await RoomService.GetRoomById(Id);
+        _isLoading = false;
+    }
+
+}
