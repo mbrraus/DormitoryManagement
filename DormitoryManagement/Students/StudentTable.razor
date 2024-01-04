@@ -1,0 +1,37 @@
+@using DormitoryManagement.Data.Models
+
+<div class="overflow-x-auto">
+    <table class="table table-zebra">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var student in Students)
+        {
+            <tr>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@(student.RoomAssignment != null ? "Assigned" : "Not Assigned")</td>
+                <td>
+                    @if (ActionTemplate is not null)
+                    {
+                        @ActionTemplate(student)
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired] public List<Student> Students { get; set; } = default!;
+
+    [Parameter] public RenderFragment<Student>? ActionTemplate { get; set; }
+}

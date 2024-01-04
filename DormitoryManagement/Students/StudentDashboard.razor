@@ -13,34 +13,18 @@
 else
 {
     <div class="overflow-x-auto">
-        <div class="flex justify-end mb-2"> <!-- Container with flexbox and alignment to the right -->
-                    <button class="btn btn-primary" @onclick="AddStudent">Add Student</button> <!-- Add Student button -->
-                </div>
-        <table class="table table-zebra">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Status</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (var student in _students)
-            {
-                <tr>
-                    <td>@student.FirstName</td>
-                    <td>@student.LastName</td>
-                    <td>@(student.RoomAssignment != null ? "Assigned" : "Not Assigned")</td>
-                    <td>
-                        <a href="@($"students/{student.Id}")" class="btn btn-ghost">Go</a>
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
+        <div class="flex justify-end mb-2">
+            <button class="btn btn-primary" @onclick="AddStudent">Add Student</button>
+        </div>
+
+        <StudentTable Students="_students">
+            <ActionTemplate Context="context">
+                <a href="@($"students/{context.Id}")" class="btn btn-ghost">Open</a>
+            </ActionTemplate>
+        </StudentTable>
     </div>
 }
+
 @code {
     private bool _isLoading;
     private List<Student> _students = [];
@@ -52,7 +36,7 @@ else
         _isLoading = false;
     }
 
-    private async Task AddStudent(MouseEventArgs arg)
+    private void AddStudent()
     {
         NavigationManager.NavigateTo("students/student-add");
     }
