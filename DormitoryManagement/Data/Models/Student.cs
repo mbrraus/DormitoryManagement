@@ -7,5 +7,5 @@ public class Student
     public string LastName { get; set; } = string.Empty;
 
     public Guid? RoomAssignmentId { get; set; }
-    public virtual RoomAssignment RoomAssignment { get; set; }
+    public virtual RoomAssignment? RoomAssignment { get; set; }
 }

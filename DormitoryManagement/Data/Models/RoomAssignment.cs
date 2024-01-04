@@ -8,7 +8,6 @@ public class RoomAssignment
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
 
-    // Navigation properties
     public virtual Room Room { get; set; }
     public virtual Student Student { get; set; }
 }
